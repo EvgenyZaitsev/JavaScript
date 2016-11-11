@@ -1,0 +1,40 @@
+<!doctype html>
+<html ng-app="todoApp">
+  <head>
+    <script src="Angular.js/angular.min.js"></script>
+    <script src="todo.js"></script>
+    <link rel="stylesheet" href="Style/todo.css">
+	<title>ToDo List by Shia Labeouf</title>
+  </head>
+  <body >
+    <h1 align = "center">My ToDo List</h1>
+    <div ng-controller="TodoListController as todoList">
+      <span>{{todoList.goalCount()}} of {{todoList.todos.length}} remaining</span>
+     
+      <ul class="unstyled">
+        <li ng-repeat="todo in todoList.todos">
+          <label class="checkbox">
+            <input type="checkbox" ng-model="todo.done">
+            <span class="done-{{todo.done}}">{{todo.text}}</span>
+			<img class="img-{{todo.done}}" src="Style/20x17_frog-puppet.gif" alt="">
+          </label>
+        </li>
+      </ul>
+      <form ng-submit="todoList.addTodo()">
+        <input type="text" ng-model="todoList.todoText"  size="30"
+               placeholder="add new todo here">
+        <input class="btn-primary" type="submit" value="add">
+      </form>
+	  <input type="button" href="" ng-click="todoList.removeDoneTasks()", value ="Remove unnesessary tasks">
+    </div>
+	<div class = "footer">
+	<span>
+	God bless StackOverflow and kittens.
+	<br>
+	Special thanks to Askeriul for sharing materials.
+	<br>
+	&copy; Made by ZED, 2016
+	</span>
+	</div>
+  </body>
+</html>
