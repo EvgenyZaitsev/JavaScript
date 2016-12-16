@@ -2,13 +2,22 @@ angular.module('todoApp', [])
   .controller('TodoListController', function() {
     var todoList = this;
 	todoList.todos = [];
+	todoList.showTodos = [];
 	todoList.todos = restoreList();
 	if (todoList.todos.length == 0) 
 	{
-		todoList.todos.push({text:'learn angular', done:true});
-		todoList.todos.push({text:'build an angular app', done:false});
+		todoList.todos.push({text:'Do it.', done:true});
+		todoList.todos.push({text:'Just do it.', done:false});
+		todoList.todos.push({text:'Don\'t let your dreams be drems.', done:true});
+		todoList.todos.push({text:'Yesterday you said tomorrow,', done:false});
+		todoList.todos.push({text:'so just do it!', done:true});
+		todoList.todos.push({text:'Make your dreams come true!', done:false});
+		todoList.todos.push({text:'JUST DO IT!', done:true});
+		todoList.todos.push({text:'Some people dream.', done:false});
+		todoList.todos.push({text:'SUCCESS!', done:true});
 	}
  
+	todoList.showTodos = todoList.todos;
     todoList.addTodo = function() {
 		if(todoList.todoText.length > 0)
 		{
@@ -18,13 +27,14 @@ angular.module('todoApp', [])
 		}
     };
  
-    todoList.goalCount = function() {
+    todoList.goalCount = function(filtered) {
       var count = 0;
-      angular.forEach(todoList.todos, function(todo) {
+      angular.forEach(filtered, function(todo) {
         count += todo.done ? 0 : 1;
       });
       return count;
     };
+
  
     todoList.removeDoneTasks = function() {
       var oldTodos = todoList.todos;
@@ -32,8 +42,8 @@ angular.module('todoApp', [])
       angular.forEach(oldTodos, function(todo) {
         if (!todo.done) 
 			todoList.todos.push(todo);
-		todoList.storeList();
       });
+	  todoList.storeList();
     };
 	
 	todoList.storeList = function() {
@@ -62,5 +72,4 @@ angular.module('todoApp', [])
 		}
 		return tempList;
 	};
-	
   });
